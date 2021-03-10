@@ -1,4 +1,3 @@
-import { template } from '@babel/core'
 import React from 'react'
 import { isMobile } from 'react-device-detect'
 import '../../../styles/DnDPageQuiz.page.scss'
@@ -26,11 +25,10 @@ const DnDQuizPage = () => {
         } else {
             tempstate[parseInt(id)-1] = false;
         }
-        if (tempstate.every(x => x)) {
-            completed = true;
-            console.log("Alle Richtig!");
+        completed = tempstate.every(x => x);
+        if (completed) {
+            alert("Alle Richtig!");
         }
-        //console.log(tempstate);
 }
 
     return (
