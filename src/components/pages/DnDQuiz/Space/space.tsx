@@ -14,7 +14,7 @@ const Space = (props: IProps) => {
         }
 
         props.onDrop({ solution: solution_id, space: props.id })
-        console.log(solution_id + ' wurde in feld' + props.id + ' geworfen')
+        //console.log(solution_id + ' wurde in feld' + props.id + ' geworfen')
     }
 
     const dragOver = (e: any) => {
