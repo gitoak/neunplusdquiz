@@ -3,5 +3,6 @@ export default interface IContainer {
 	spacing?: boolean
 	centered?: boolean
 	children: any
-	className?: string 
+	className?: string
+	onMouseMove?: React.ReactNode
 }
