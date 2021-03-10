@@ -1,7 +1,8 @@
 import React from 'react'
 import '../../../../styles/DnDPageQuiz.page.scss'
+import IProps from '../../../../types/DnDSpace.IProps'
 
-const Space = (props: any) => {
+const Space = (props: IProps) => {
     const drop = (e: any) => {
         e.preventDefault()
         const solution_id = e.dataTransfer.getData('solution_id')
@@ -12,7 +13,7 @@ const Space = (props: any) => {
             solution.style.display = 'inline-block'
         }
 
-        console.log(solution_id + ' wurde in feld' + props.id + ' geworfen')
+        props.onDrop({solution: solution_id, space: props.id})
     }
 
     const dragOver = (e: any) => {

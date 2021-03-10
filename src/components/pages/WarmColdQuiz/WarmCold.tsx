@@ -16,12 +16,9 @@ const WarmColdQuiz = () => {
 
     const getDistance = (distance: IWarmColdState) => {
         function Circle(x1: number, y1: number, x2: number, y2: number) {
-            return Math.sqrt((x2 - x1) * 2 + (y2 - y1) * 2)
+            return Math.sqrt(Math.abs(x2 - x1) * 2 + Math.abs(y2 - y1) * 2)
         }
 
-        if (distance.x < 90 || distance.y < 90) {
-            return Circle(distance.x, distance.y, 90, 90)
-        }
         return Circle(90, 90, distance.x, distance.y)
     }
 

@@ -10,21 +10,32 @@ const DnDQuizPage = () => {
         return <Typographie type='xl'>Dieses Feture Funktioniert nur am PC</Typographie>
     }
 
+    const handleDrop = (e: any) => {
+        console.log(e)
+    }
+
     return (
         <Container type='styled' className='quiz-container'>
             <Typographie type='m' className='quiz-text'>
                 Ein
-                <Space id='space-1' className='quiz-gap' />
+                <Space id='space-1' className='quiz-gap' onDrop={(e: any) => handleDrop(e)} />
                 Text mit einer
-                <Space id='space-2' className='quiz-gap' />
+                <Space id='space-2' className='quiz-gap' onDrop={(e: any) => handleDrop(e)} />
                 Lücke
             </Typographie>
-            <Space id='default-space' className='quiz-options default-space'>
+            <Space
+                id='default-space'
+                className='quiz-options default-space'
+                onDrop={(e: any) => handleDrop(e)}
+            >
                 <Option id='option-1' className='quiz-option' draggable='true'>
                     kleiner
                 </Option>
                 <Option id='option-2' className='quiz-option' draggable='true'>
                     großen
+                </Option>
+                <Option id='option-3' className='quiz-option' draggable='true'>
+                    hallo
                 </Option>
             </Space>
         </Container>
