@@ -1,0 +1,41 @@
+$accent: #f6d379;
+$dark-text: #0e0e0e;
+@keyframes link-btn-animation {
+	0.0% {
+		transform: rotate(0) scale(0.8);
+		opacity: 0.5;
+	}
+	20% {
+		transform: rotate(0) scale(0.8);
+		opacity: 0;
+	}
+	100% {
+		transform: rotate(0) scale(1);
+		opacity: 1;
+	}
+}
+.link-btn {
+	display: inline-block;
+	text-decoration: none;
+	padding: 0.5em 1.25em 0.5em 1em;
+	margin: 1em;
+	background: $accent;
+	color: $dark-text;
+	font-weight: 700;
+	text-transform: uppercase;
+	text-justify: auto;
+	font-size: 1em;
+	border-radius: 0.25em;
+	transition: transform 250ms ease-in-out, opacity 250ms linear;
+	animation: link-btn-animation 0.5s ease 0s 1 normal;
+}
+.btn:hover,
+.btn:focus {
+	transform: scale(1.01);
+	opacity: 0.9;
+	outline-width: 0;
+}
+.link {
+	text-decoration: none;
+	color: brown;
+}

@@ -1,0 +1,27 @@
+import { QuizActionTypes } from '../../types/redux.IActions'
+import IState from '../../types/redux.IState'
+
+const quizReducerDefaultState: IState = {
+    score: 0
+}
+
+const QuizReducer = (state = quizReducerDefaultState, action: QuizActionTypes): IState => {
+    switch (action.type) {
+        case 'ADD_SCORE':
+            return Object.assign({}, state, {
+                score: state.score + action.amount,
+            })
+        case "REMOVE_SCORE":
+            if (state.score - action.amount >= 0) {
+                return Object.assign({}, state, {
+                    score: state.score - action.amount,
+                })
+            } else {
+                return state
+            }
+        default:
+            return state
+    }
+}
+
+export default QuizReducer

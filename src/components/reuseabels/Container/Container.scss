@@ -1,0 +1,15 @@
+.container {
+    width: 95%;
+    max-width: 65em;
+    padding: 2rem;
+    margin: 0 auto;
+}
+
+.spacing>*+* {
+    margin-top: var(--spacer, 2rem);
+}
+
+.contain-centered {
+    justify-content: center;
+    text-align: center;
+}

@@ -1,0 +1,39 @@
+.quiz-container {
+
+    .quiz-text {
+        line-height: 1.5;
+        display: inline-block;
+
+        .quiz-option {
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .quiz-gap {
+            min-width: 7rem;
+            height: 2rem;
+            padding: 10px;
+            display: inline-block;
+        }
+    }
+
+    .default-space {
+        display: inline-block;
+        min-height: 20px;
+        width: 90%;
+        border: 1px solid black;
+        padding: 1.5rem;
+
+        .quiz-option {
+            cursor: pointer;
+            display: inline-block;
+            float: left;
+            clear: left;
+        }
+
+        .quiz-option::after {
+            content: '\A';
+            white-space: pre;
+        }
+    }
+}
