@@ -15,12 +15,6 @@ const Space = (props: IProps) => {
 
         props.onDrop({ solution: solution_id, space: props.id })
         console.log(solution_id + ' wurde in feld' + props.id + ' geworfen')
-
-        if (solution_id.replace(/\D/g, '') === props.id.replace(/\D/g, '')) {
-            console.log('Richtig!')
-        } else {
-            console.log('Nicht Richtig!')
-        }
     }
 
     const dragOver = (e: any) => {
