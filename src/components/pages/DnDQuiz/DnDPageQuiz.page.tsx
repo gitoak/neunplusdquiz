@@ -1,3 +1,4 @@
+import { template } from '@babel/core'
 import React from 'react'
 import { isMobile } from 'react-device-detect'
 import '../../../styles/DnDPageQuiz.page.scss'
@@ -11,7 +12,22 @@ const DnDQuizPage = () => {
     }
 
     const handleDrop = (e: any) => {
-        console.log(e)
+        var tempdata = localStorage.getItem('tempstate');
+        if (tempdata === null) {
+            var tempstate: any[] = new Array(2).fill(false);
+        } else {
+            var tempstate: any[] = JSON.parse(tempdata);
+        }
+        var id = e.space.replace(/\D/g, '');
+        if (e.solution.replace(/\D/g, '') === id) {
+            tempstate[parseInt(id)-1] = true;
+        } else {
+            tempstate[parseInt(id)-1] = false;
+        }
+        if (tempstate.every(x => x)) {
+            console.log("Alle Richtig!")
+        }
+        localStorage.setItem('tempstate', JSON.stringify(tempstate));
     }
 
     return (
