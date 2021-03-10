@@ -10,7 +10,7 @@ const Option = (props: any) => {
         setTimeout(() => {
             target.style.display = 'none'
         }, 0)
-        console.log(target.id + 'wurde aufgehoben')
+        //console.log(target.id + 'wurde aufgehoben')
     }
 
     const dragOver = (e: any) => {
@@ -23,7 +23,7 @@ const Option = (props: any) => {
         setTimeout(() => {
             target.style.display = 'inline-block'
         }, 0)
-        console.log(e.target.id + ' wurde fallen gelassen')
+        //console.log(e.target.id + ' wurde fallen gelassen')
     }
 
     return (
