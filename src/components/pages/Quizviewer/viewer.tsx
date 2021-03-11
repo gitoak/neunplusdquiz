@@ -16,14 +16,15 @@ const Viewer = (): React.FC<IPage> => {
     useEffect(() => {
         if (state?.current) {
             switch (state.current.type) {
-                case "m":
+                case 'm':
                     setQuiz(mquizes[state.current.id])
                     break
-                case "d":
+                case 'd':
                     setQuiz(dquizes[state.current.id])
                     break
                 default:
                     break
+            }
         } else {
             setQuiz(undefined)
         }
