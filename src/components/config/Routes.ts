@@ -21,13 +21,13 @@ const Routes: IRoute[] = [
 		exact: true,
 	},
 	{
-		path: '/quiz1',
+		path: '/old/quiz1',
 		page: Pages[2],
 		component: DnDQuizPage,
 		exact: true,
 	},
 	{
-		path: '/quiz2',
+		path: '/old/quiz2',
 		page: Pages[3],
 		component: MQuizPage,
 		exact: true,

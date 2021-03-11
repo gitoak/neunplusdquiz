@@ -2,7 +2,9 @@ import { QuizActionTypes } from '../../types/redux.IActions'
 import IState from '../../types/redux.IState'
 
 const quizReducerDefaultState: IState = {
-    score: 0
+    score: 0,
+    played: [],
+    round: 0
 }
 
 const QuizReducer = (state = quizReducerDefaultState, action: QuizActionTypes): IState => {
@@ -18,6 +20,22 @@ const QuizReducer = (state = quizReducerDefaultState, action: QuizActionTypes): 
                 })
             } else {
                 return state
+            }
+        case "START_GAME":
+            return Object.assign({}, quizReducerDefaultState, {
+                round: 1
+            })
+        case "RESUME":
+            if (action.isCorrectly === true) {
+                return Object.assign({}, state, {
+                    played: [...state.played, { variant: action.variant, id: action.id, correctly: action.isCorrectly }],
+                    round: state.round++
+                })
+            } else {
+                return Object.assign({}, state, {
+                    played: [...state.played, { variant: action.variant, id: action.id, correctly: action.isCorrectly }],
+                    round: state.round--
+                })
             }
         default:
             return state
