@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode } from "react"
 
 export default interface IPopupQuiz {
     question: string
@@ -9,4 +9,5 @@ export default interface IPopupQuiz {
     solution: "a" | "b" | "c" | "d"
     answer: string
     children?: ReactNode
+    isCorrectly: any
 }

@@ -7,4 +7,5 @@ export default interface IUseQuiz {
     dColor: IColors
     giveAwnser: any
     status: "waiting" | "ready"
+    correctly: boolean | undefined
 }

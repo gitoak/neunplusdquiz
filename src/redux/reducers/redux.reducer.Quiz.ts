@@ -1,3 +1,4 @@
+import mquizes from '../../components/molecules/mquizes/quizes'
 import { QuizActionTypes } from '../../types/redux.IActions'
 import IState from '../../types/redux.IState'
 
@@ -37,6 +38,10 @@ const QuizReducer = (state = quizReducerDefaultState, action: QuizActionTypes): 
                     round: state.round--
                 })
             }
+        case "GET_QUIZ":
+            if (action.variant === "m") {
+                return {...state, current: {type: action.variant, id: Math.floor(Math.random() * mquizes.length)}}
+            } 
         default:
             return state
     }

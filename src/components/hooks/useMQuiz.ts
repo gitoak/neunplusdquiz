@@ -9,10 +9,12 @@ function useQuiz(solution: "a" | "b" | "c" | "d"): IUseQuiz {
     const [bColor, setBColor] = useState<IColors>({ color: "basic" })
     const [cColor, setCColor] = useState<IColors>({ color: "basic" })
     const [dColor, setDColor] = useState<IColors>({ color: "basic" })
+    const [correctly, setCorrectly] = useState<boolean>()
 
     useEffect(() => {
         if (awnser !== "") {
             if (awnser === solution) {
+                setCorrectly(true)
                 switch (awnser) {
                     case "a":
                         setAColor({ color: "success" })
@@ -28,6 +30,7 @@ function useQuiz(solution: "a" | "b" | "c" | "d"): IUseQuiz {
                         break
                 }
             } else {
+                setCorrectly(false)
                 switch (awnser) {
                     case "a":
                         setAColor({ color: "danger" })
@@ -65,7 +68,7 @@ function useQuiz(solution: "a" | "b" | "c" | "d"): IUseQuiz {
         setAwnser(awnser)
     }
 
-    return { aColor, bColor, cColor, dColor, giveAwnser, status } as const
+    return { aColor, bColor, cColor, dColor, giveAwnser, status, correctly } as const
 }
 
 export default useQuiz

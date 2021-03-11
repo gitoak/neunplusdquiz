@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import useQuiz from '../../hooks/useMQuiz'
 import { Container, List, QuizButton as Button, Typographie } from '../../reuseabels'
 import IPopupQuiz from './IPopupQuiz'
 import './main.PopupQuiz.scss'
 
 const PopupQuiz = (props: IPopupQuiz): JSX.Element => {
-    const { aColor, bColor, cColor, dColor, giveAwnser, status } = useQuiz(props.solution)
+    const { aColor, bColor, cColor, dColor, giveAwnser, status, correctly } = useQuiz(
+        props.solution
+    )
+
+    useEffect(() => {
+        if (correctly) {
+            props.isCorrectly(correctly)
+        }
+    }, [])
 
     if (status === 'ready') {
         return (
