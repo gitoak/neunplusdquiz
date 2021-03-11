@@ -1,6 +1,6 @@
 import React from 'react'
 import '../../../../styles/DnDPageQuiz.page.scss'
-import IProps from '../../../../types/DnDSpace.IProps'
+import IProps from '../../../../../types/DnDSpace.IProps'
 
 const Space = (props: IProps) => {
     const drop = (e: any) => {
