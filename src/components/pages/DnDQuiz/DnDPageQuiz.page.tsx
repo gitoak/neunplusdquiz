@@ -26,9 +26,6 @@ const DnDQuizPage = () => {
             tempstate[parseInt(id)-1] = false;
         }
         completed = tempstate.every(x => x);
-        if (completed) {
-            alert("Alle Richtig!");
-        }
 }
 
     return (
@@ -52,12 +49,11 @@ const DnDQuizPage = () => {
                     großen
                 </Option>
             </Space>
+            <button onClick={() => alert(completed)} >Weiter</button>
         </Container>
     )
 }
 
-///<Option id='option-3' className='quiz-option' draggable='true'>
-///    hallo
-///</Option>
+
 
 export default DnDQuizPage
