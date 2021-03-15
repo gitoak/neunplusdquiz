@@ -8,9 +8,13 @@ const Space = (props: IProps) => {
         const solution_id = e.dataTransfer.getData('solution_id')
 
         const solution = document.getElementById(solution_id)
+        const gap = document.getElementById(props.id)
         if (solution) {
             e.target.appendChild(solution)
             solution.style.display = 'inline-block'
+            if (gap) {
+                gap.style.paddingBottom = '50px'
+            }
         }
 
         props.onDrop({ solution: solution_id, space: props.id })

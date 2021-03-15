@@ -11,11 +11,11 @@ const HomePage: React.FC<IPage> = () => {
             <button onClick={() => increaseScore(1)}>Increase Score</button>
             <button onClick={() => decreaseScore(1)}>Decrease Score</button>
             <Devider type='no-style' />
-            <Link type='link' to='/quiz1'>
+            <Link type='link' to='/old/quiz1'>
                 quiz 1
             </Link>
             <Devider type='no-style' />
-            <Link type='link' to='/quiz2'>
+            <Link type='link' to='/old/quiz2'>
                 quiz 2
             </Link>
         </Container>

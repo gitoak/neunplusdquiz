@@ -39,20 +39,20 @@ const QuizReducer = (state = quizReducerDefaultState, action: QuizActionTypes): 
                 })
             }
         case "GET_QUIZ":
-            let idlist: any[] = [];
-            for (let i = 0; i < state.played.length; i++) {
-                idlist[i] = state.played[i].id;
+            let idlist: any[] = []
+            for (let i = 0;i < state.played.length;i++) {
+                idlist[i] = state.played[i].id
             }
 
-            let choice = Math.floor(Math.random() * mquizes.length);
+            let choice = Math.floor(Math.random() * mquizes.length)
             while (idlist.includes(choice)) {
-                let choice = Math.floor(Math.random() * mquizes.length);
+                choice = Math.floor(Math.random() * mquizes.length)
             }
 
             if (action.variant === "m") {
-                return {...state, current: {type: action.variant, id: choice}}
+                return { ...state, current: { type: action.variant, id: choice } }
             } else {
-                return {...state, current: {type: action.variant, id: choice}} // Dummy Condition
+                return { ...state, current: { type: action.variant, id: choice } } // Dummy Condition
             }
         default:
             return state
