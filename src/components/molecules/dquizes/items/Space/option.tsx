@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../../../styles/DnDPageQuiz.page.scss'
+import '../../../../../styles/DnDPageQuiz.page.scss'
 
 const Option = (props: any) => {
     const dragStart = (e: any) => {

@@ -4,17 +4,20 @@
         line-height: 1.5;
         display: inline-block;
 
-        .quiz-option {
-            cursor: pointer;
-            display: inline-block;
-        }
-
         .quiz-gap {
             min-width: 7rem;
             height: 2rem;
-            padding: 10px;
+            margin: 5px;
+            vertical-align: middle;
             display: inline-block;
             background-color: rgb(207, 207, 207);
+            height: auto;
+            min-height: 3rem;
+
+            .quiz-option {
+                cursor: pointer;
+                margin: 10px;
+            }
         }
     }
 

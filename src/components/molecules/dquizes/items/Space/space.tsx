@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../../../styles/DnDPageQuiz.page.scss'
+import '../../../../../styles/DnDPageQuiz.page.scss'
 import IProps from '../../../../../types/DnDSpace.IProps'
 
 const Space = (props: IProps) => {

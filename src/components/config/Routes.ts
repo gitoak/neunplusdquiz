@@ -4,6 +4,7 @@ import DnDQuizPage from '../pages/DnDQuiz/DnDPageQuiz.page'
 import FourOFourPage from '../pages/FourOFourPage/pages.FourOFourPage'
 import HomePage from '../pages/HomePage/pages.HomePage'
 import MQuizPage from '../pages/MQuiz/page.Mquiz'
+import Viewer from '../pages/Quizviewer/viewer'
 import Pages from './Pages'
 
 const Routes: IRoute[] = [
@@ -29,6 +30,12 @@ const Routes: IRoute[] = [
 		path: '/old/quiz2',
 		page: Pages[3],
 		component: MQuizPage,
+		exact: true,
+	},
+	{
+		path: '/quiz',
+		page: Pages[4],
+		component: Viewer,
 		exact: true,
 	},
 	{

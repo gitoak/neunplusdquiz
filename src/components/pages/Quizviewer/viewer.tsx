@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { resume } from '../../../redux/actions/redux.actions.Quiz'
+import { getQuiz, resume } from '../../../redux/actions/redux.actions.Quiz'
 import store from '../../../redux/store/redux.store.configureStore'
 import IPage from '../../../types/pages.IPage'
 import IDQuiz from '../../../types/quizes.IDQuiz'
@@ -60,8 +60,10 @@ const Viewer: React.FC<IPage> = () => {
                 )}
             </Container>
         )
-    } else {
+    } else if (quizType === 'd') {
         return <h1>hallo</h1>
+    } else {
+        return <button onClick={() => store.dispatch(getQuiz('m'))}>Starte quiz</button>
     }
 }
 

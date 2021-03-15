@@ -28,7 +28,7 @@ const DnDQuizPage = () => {
 
     return (
         <Container type='styled' className='quiz-container'>
-            <Typographie type='m' className='quiz-text'>
+            <Typographie type='s' className='quiz-text'>
                 Ungesunde Ernährung schadet nicht nur den
                 <Space id='space-1' className='quiz-gap' onDrop={(e: any) => handleDrop(e)} />
                 sondern vor allem unserem
@@ -83,7 +83,6 @@ const DnDQuizPage = () => {
                     Lebensmittel
                 </Option>
             </Space>
-            <button onClick={() => alert(completed)}>Menschen</button>
         </Container>
     )
 }

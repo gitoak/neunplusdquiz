@@ -1,7 +1,7 @@
 import React from 'react'
 import { isMobile } from 'react-device-detect'
+import '../../../../styles/DnDPageQuiz.page.scss'
 import { Container, Typographie } from '../../../reuseabels'
-import '../../../styles/DnDPageQuiz.page.scss'
 import Option from './Space/option'
 import Space from './Space/space'
 

@@ -38,10 +38,10 @@ const Pages: IPage[] = [
 		},
 	},
 	{
-		name: 'WarmCold',
+		name: 'viewer',
 		meta: {
-			title: 'WarmCold',
-			description: 'WarmCold',
+			title: 'viewer',
+			description: 'quiz viewer',
 			keywords: '',
 			index: true,
 		},
