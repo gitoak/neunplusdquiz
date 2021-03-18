@@ -18,8 +18,6 @@ const Viewer: React.FC<IPage> = () => {
     const [current, setCurrent] = useState<number>()
     const [corecctly, setCorecctly] = useState<boolean>()
 
-    //store.subscribe(() => setState(store.getState()))
-
     const update = useCallback(() => {
         setState(store.getState())
     }, [])
@@ -28,6 +26,7 @@ const Viewer: React.FC<IPage> = () => {
 
     useEffect(() => {
         update();
+        console.log(corecctly)
         if (state?.current) {
             setCurrent(state.current.id)
             switch (state.current.type) {
@@ -45,8 +44,6 @@ const Viewer: React.FC<IPage> = () => {
         }
     }, [state])
 
-    console.log(state);
-
     if (quizType === 'm' && mquiz !== undefined && current !== undefined) {
         return (
             <Container type='styled'>
@@ -58,11 +55,11 @@ const Viewer: React.FC<IPage> = () => {
                     d={mquiz.d}
                     answer={mquiz.answer}
                     solution={mquiz.solution}
-                    isCorrectly={(correctly: boolean) => setCorecctly(corecctly)}
+                    isCorrectly={(correctly: boolean) => setCorecctly(correctly)}
                 ></PopupQuiz>
                 {corecctly !== undefined ? (
                     <button onClick={() => store.dispatch(resume('m', current, corecctly))}>
-                        Weiter
+                    Weiter
                     </button>
                 ) : (
                     ''
