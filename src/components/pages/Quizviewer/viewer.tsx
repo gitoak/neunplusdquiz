@@ -55,14 +55,12 @@ const Viewer: React.FC<IPage> = () => {
                     d={mquiz.d}
                     answer={mquiz.answer}
                     solution={mquiz.solution}
-                    isCorrectly={(correctly: boolean) => setCorecctly(correctly)}
+                    isCorrectly={(correctly: boolean) => setCorecctly(corecctly)}
                 ></PopupQuiz>
-                {corecctly !== undefined ? (
+                {corecctly && (
                     <button onClick={() => store.dispatch(resume('m', current, corecctly))}>
                     Weiter
                     </button>
-                ) : (
-                    ''
                 )}
             </Container>
         )
