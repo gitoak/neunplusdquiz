@@ -35,10 +35,16 @@ const QuizReducer = (state = quizReducerDefaultState, action: QuizActionTypes): 
             } else {
                 return Object.assign({}, state, {
                     played: [...state.played, { variant: action.variant, id: action.id, correctly: action.isCorrectly }],
-                    round: state.round--
+                    round: state.round++
                 })
             }
         case "GET_QUIZ":
+            if (!state) {
+                return Object.assign({}, state, {
+                    current: { type: action.variant, id: Math.floor(Math.random() * mquizes.length) }
+                })
+            }
+
             let idlist: any[] = []
             for (let i = 0;i < state.played.length;i++) {
                 idlist[i] = state.played[i].id
