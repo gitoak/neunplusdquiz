@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { getQuiz, resume } from '../../../redux/actions/redux.actions.Quiz'
 import store from '../../../redux/store/redux.store.configureStore'
 import IPage from '../../../types/pages.IPage'
@@ -18,9 +18,16 @@ const Viewer: React.FC<IPage> = () => {
     const [current, setCurrent] = useState<number>()
     const [corecctly, setCorecctly] = useState<boolean>()
 
-    store.subscribe(() => setState(store.getState()))
+    //store.subscribe(() => setState(store.getState()))
+
+    const update = useCallback(() => {
+        setState(store.getState())
+    }, [])
+
+    store.subscribe(() => update())
 
     useEffect(() => {
+        update();
         if (state?.current) {
             setCurrent(state.current.id)
             switch (state.current.type) {
@@ -37,6 +44,8 @@ const Viewer: React.FC<IPage> = () => {
             }
         }
     }, [state])
+
+    console.log(state);
 
     if (quizType === 'm' && mquiz !== undefined && current !== undefined) {
         return (
