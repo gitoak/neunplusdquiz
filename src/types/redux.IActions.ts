@@ -3,6 +3,7 @@ export const REMOVE_SCORE = 'REMOVE_SCORE'
 
 export const START_GAME = 'START_GAME'
 export const RESUME = 'RESUME'
+export const END_GAME = 'END_GAME'
 export const GET_QUIZ = 'GET_QUIZ'
 
 export interface AddScore {
@@ -26,11 +27,15 @@ export interface Resume {
     isCorrectly: boolean
 }
 
+export interface EndGame {
+    type: typeof END_GAME
+}
+
 export interface GetQuiz {
     type: typeof GET_QUIZ
     variant: "m" | "d"
 }
 
-export type QuizActionTypes = AddScore | RemoveScore | StartGame | Resume | GetQuiz
+export type QuizActionTypes = AddScore | RemoveScore | StartGame | Resume | GetQuiz | EndGame
 
 export type AppActionTypes = QuizActionTypes
