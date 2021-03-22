@@ -27,17 +27,29 @@ const QuizReducer = (state = quizReducerDefaultState, action: QuizActionTypes): 
                 round: 1
             })
         case "RESUME":
-            if (action.isCorrectly === true) {
+            if (action.isCorrectly) {
                 return Object.assign({}, state, {
                     played: [...state.played, { variant: action.variant, id: action.id, correctly: action.isCorrectly }],
-                    round: state.round++
+                    round: state.round += 1
                 })
             } else {
                 return Object.assign({}, state, {
                     played: [...state.played, { variant: action.variant, id: action.id, correctly: action.isCorrectly }],
-                    round: state.round++
+                    round: state.round += 1
                 })
             }
+        case "END_GAME":
+            if (!state) {
+                var score = 0
+            } else {
+                var score = 0
+                for (let i = 0;i < state.played.length;i++) {
+                    if (state.played[i].correctly) {
+                        score += 1
+                    }
+                }
+            }
+            return Object.assign({}, state, { score: score, round: 1, played : []})
         case "GET_QUIZ":
             if (!state) {
                 return Object.assign({}, state, {
@@ -48,6 +60,10 @@ const QuizReducer = (state = quizReducerDefaultState, action: QuizActionTypes): 
             let idlist: any[] = []
             for (let i = 0;i < state.played.length;i++) {
                 idlist[i] = state.played[i].id
+            }
+
+            if (idlist.length >= mquizes.length) {
+                return { ...state, current: { type: action.variant, id: -1 } } // Kritischer Fehler. Verhindert nur eine Endlosschleife.
             }
 
             let choice = Math.floor(Math.random() * mquizes.length)
