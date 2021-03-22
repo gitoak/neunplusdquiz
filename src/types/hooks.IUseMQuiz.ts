@@ -6,6 +6,9 @@ export default interface IUseQuiz {
     cColor: IColors
     dColor: IColors
     giveAwnser: any
+    setAwnser: any
     status: "waiting" | "ready"
+    setStatus: any
     correctly: boolean | undefined
+    setCorrectly: any
 }
