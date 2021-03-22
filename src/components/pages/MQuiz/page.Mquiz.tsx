@@ -14,6 +14,7 @@ const MQuizPage: React.FC<IPage> = () => {
                 answer='Kernobst ist ein Sammelbegriff für Früchte aus der Familie der Rosengewächse, die ein Kerngehäuse besitzen. Da eine Pflaume dieses Kerngehäuse nicht hat, ist sie kein Kernobst.                '
                 solution='b'
                 isCorrectly={false}
+                doReset={() => (false)}
             ></PopupQuiz>
             <button onClick={() => window.location.reload(false)}>Try again</button>
         </Container>
