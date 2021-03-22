@@ -10,4 +10,5 @@ export default interface IPopupQuiz {
     answer: string
     children?: ReactNode
     isCorrectly: any
+    doReset: any
 }
