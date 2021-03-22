@@ -68,7 +68,7 @@ function useQuiz(solution: "a" | "b" | "c" | "d"): IUseQuiz {
         setAwnser(awnser)
     }
 
-    return { aColor, bColor, cColor, dColor, giveAwnser, status, correctly } as const
+    return { aColor, bColor, cColor, dColor, giveAwnser, setAwnser, status, setStatus, correctly, setCorrectly } as const
 }
 
 export default useQuiz
