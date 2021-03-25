@@ -10,7 +10,7 @@ import IState from '../../../types/redux.IState'
 import dquizes from '../../molecules/dquizes/quizes'
 import mquizes from '../../molecules/mquizes/quizes'
 import PopupQuiz from '../../molecules/PopUpQuiz/main.PopupQuiz'
-import { Container } from '../../reuseabels'
+import { Container, Typographie } from '../../reuseabels'
 
 const Viewer: React.FC<IPage> = () => {
     const [mquiz, setMQuiz] = useState<IMQuiz>()
@@ -85,8 +85,8 @@ const Viewer: React.FC<IPage> = () => {
                     doReset={() => (reset)}
                 ></PopupQuiz>
                 {corecctly !== undefined && corecctly !== null ? (
-                    <button onClick={() => nextQuiz()}>
-                    Weiter
+                    <button onClick={() => nextQuiz()} color="basic" className="quiz-button">
+                        <Typographie type='xs'>Nächste Frage</Typographie>
                     </button>
                 ) : (
                     ''
@@ -96,7 +96,15 @@ const Viewer: React.FC<IPage> = () => {
     } else if (quizType === 'd') {
         return <h1>hallo</h1>
     } else {
-        return <button onClick={() => store.dispatch(getQuiz('m'))}>Starte quiz</button>
+        return (
+            <div>
+                <Container type='styled'>
+                <button onClick={() => store.dispatch(getQuiz('m'))} color="basic" className="quiz-button">
+                    <Typographie type='m'>Quiz Starten</Typographie>
+                </button>
+                </Container>
+            </div>
+        )
     }
 }
 
