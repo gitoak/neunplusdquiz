@@ -11,7 +11,7 @@ const Routes: IRoute[] = [
 	{
 		path: '/',
 		page: Pages[0],
-		component: HomePage,
+		component: Viewer,
 		exact: true,
 	},
 	{
