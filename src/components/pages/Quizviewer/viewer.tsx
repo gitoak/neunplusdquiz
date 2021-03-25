@@ -49,8 +49,8 @@ const Viewer: React.FC<IPage> = () => {
             store.dispatch(endGame())
             let lstate = localStorage.getItem("state")
             if (lstate) {var score = parseInt(JSON.parse(lstate).score)} else {var score = 0}
-            alert("Runde: " + rounds + " Punkte: " + score + " | Unvollständig")
             localStorage.removeItem("state")
+            localStorage.setItem("fin", (score.toString() + " von " + rounds.toString()))
             window.location.reload()
         }
         if (state?.current) {
@@ -70,8 +70,31 @@ const Viewer: React.FC<IPage> = () => {
         }
     }, [state])
 
-    if (quizType === 'm' && mquiz !== undefined && current !== undefined) {
+    if (localStorage.getItem("fin")) {
+        let score = localStorage.getItem("fin")
+        if (score === undefined) { score = "0" }
         return (
+            <Container type="styled">
+                    <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
+                    <Typographie type="l">
+                        Gut gemacht! 
+                    </Typographie>
+                    </div>
+                    <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
+                    <Typographie type="m">
+                        Du hast {score} Fragen Richtig beantwortet
+                    </Typographie>
+                    </div>
+                    <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', marginTop: 50}}>
+                        <button onClick={() => {store.dispatch(getQuiz('m'));localStorage.removeItem("fin")}} color="basic" className="quiz-button">
+                            <Typographie type='xs'>Neues Quiz</Typographie>
+                        </button>
+                    </div>
+            </Container>
+        )
+    } else if (quizType === 'm' && mquiz !== undefined && current !== undefined) {
+        return (
+            <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', marginTop: 50}}>
             <Container type='styled'>
                 <PopupQuiz
                     question={mquiz.question}
@@ -92,18 +115,19 @@ const Viewer: React.FC<IPage> = () => {
                     ''
                 )}
             </Container>
+            </div>
         )
     } else if (quizType === 'd') {
         return <h1>hallo</h1>
     } else {
         return (
-            <div>
-                <Container type='styled'>
-                <button onClick={() => store.dispatch(getQuiz('m'))} color="basic" className="quiz-button">
-                    <Typographie type='m'>Quiz Starten</Typographie>
-                </button>
-                </Container>
-            </div>
+            <Container type='styled'>
+                <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', background:"white"}}>
+                    <button onClick={() => store.dispatch(getQuiz('m'))} color="basic" className="quiz-button" type="button">
+                        <Typographie type='m'>Quiz Starten</Typographie>
+                    </button>
+                </div>
+            </Container>
         )
     }
 }
