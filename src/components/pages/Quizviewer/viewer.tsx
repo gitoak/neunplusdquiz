@@ -5,12 +5,12 @@ import store from '../../../redux/store/redux.store.configureStore'
 import IPage from '../../../types/pages.IPage'
 import IDQuiz from '../../../types/quizes.IDQuiz'
 import IMQuiz from '../../../types/quizes.IMQuiz'
-import { END_GAME } from '../../../types/redux.IActions'
 import IState from '../../../types/redux.IState'
 import dquizes from '../../molecules/dquizes/quizes'
 import mquizes from '../../molecules/mquizes/quizes'
 import PopupQuiz from '../../molecules/PopUpQuiz/main.PopupQuiz'
 import { Container, Typographie } from '../../reuseabels'
+import { Line } from 'react-chartjs-2';
 
 const Viewer: React.FC<IPage> = () => {
     const [mquiz, setMQuiz] = useState<IMQuiz>()
@@ -20,6 +20,8 @@ const Viewer: React.FC<IPage> = () => {
     const [current, setCurrent] = useState<number>()
     const [corecctly, setCorecctly] = useState<any>()
     const [reset, setReset] = useState<boolean>()
+    var maxrounds = 10
+
 
     const update = useCallback(() => {
         setState(store.getState())
@@ -40,18 +42,19 @@ const Viewer: React.FC<IPage> = () => {
         window.location.reload()
     }
 
-
     useEffect(() => {
         update();
         // Bessere Anzeige dringend nötig
         let rounds = state?.round
-        if (rounds !== undefined && rounds > 9) {
+        if (rounds !== undefined && rounds > maxrounds-1) {
             store.dispatch(endGame())
             let lstate = localStorage.getItem("state")
             if (lstate) {var score = parseInt(JSON.parse(lstate).score)} else {var score = 0}
             localStorage.removeItem("state")
-            localStorage.setItem("fin", (score.toString() + " von " + rounds.toString()))
-            window.location.reload()
+            let lstat = localStorage.getItem("stat")
+            if (lstat !== undefined && lstat !== null) {var stat:Array<number> = JSON.parse(lstat)} else {var stat:Array<number> = [0]}
+            localStorage.setItem("stat", JSON.stringify(stat.concat([score])))
+            //window.location.reload()
         }
         if (state?.current) {
             setCurrent(state.current.id)
@@ -70,19 +73,28 @@ const Viewer: React.FC<IPage> = () => {
         }
     }, [state])
 
-    if (localStorage.getItem("fin")) {
-        let score = localStorage.getItem("fin")
-        if (score === undefined) { score = "0" }
+    if (!localStorage.getItem("state") && localStorage.getItem("stat")) {
+        let lstat = localStorage.getItem("stat")
+        if (lstat !== undefined && lstat !== null) { var stat:Array<number> = JSON.parse(lstat) } else {var stat:Array<number> = [0]}
+        let score = stat[stat.length-1]
+        let vals = stat.slice(Math.max(stat.length - 10, 0))
+        let options = {elements:{line:{tension:0}},scales:{yAxes:[{ticks:{suggestedMax:maxrounds}}]}}
+        let data = {
+            labels: Array.from(Array(10).keys()),
+            datasets: [{
+                            label: "Punkte der Letzten 10 Durchläufe",
+                            data: vals,
+                            fill: false,
+                            borderColor: "#00BFFF"
+                        }]};
         return (
             <Container type="styled">
                     <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
-                    <Typographie type="l">
-                        Gut gemacht! 
-                    </Typographie>
+                    <Typographie type="l">Gut gemacht! </Typographie>
                     </div>
                     <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
                     <Typographie type="m">
-                        Du hast {score} Fragen Richtig beantwortet
+                        Du hast {score} von {maxrounds} Fragen Richtig beantwortet
                     </Typographie>
                     </div>
                     <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', marginTop: 50}}>
@@ -90,10 +102,17 @@ const Viewer: React.FC<IPage> = () => {
                             <Typographie type='xs'>Neues Quiz</Typographie>
                         </button>
                     </div>
+                    <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', marginTop: 50}}>
+                    <Line data={data} options={options}></Line>
+                    </div>
             </Container>
         )
-    } else if (quizType === 'm' && mquiz !== undefined && current !== undefined) {
+    } else if (quizType === 'm' && mquiz !== undefined && current !== undefined && state?.round !== undefined) {
         return (
+            <div>
+            <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', marginTop: 50}}>
+            <Typographie type="l">Frage {state?.round + 1} von {maxrounds}</Typographie>
+            </div>
             <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', marginTop: 50}}>
             <Container type='styled'>
                 <PopupQuiz
@@ -109,12 +128,13 @@ const Viewer: React.FC<IPage> = () => {
                 ></PopupQuiz>
                 {corecctly !== undefined && corecctly !== null ? (
                     <button onClick={() => nextQuiz()} color="basic" className="quiz-button">
-                        <Typographie type='xs'>Nächste Frage</Typographie>
+                        <Typographie type='xs'>{state?.round+1 === maxrounds ? ('Quiz beenden'):('Nächste Frage')}</Typographie>
                     </button>
                 ) : (
                     ''
                 )}
             </Container>
+            </div>
             </div>
         )
     } else if (quizType === 'd') {
