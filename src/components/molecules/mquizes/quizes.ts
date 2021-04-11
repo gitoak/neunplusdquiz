@@ -163,6 +163,33 @@ const mquizes: IMQuiz[] = [
         answer: "Als Salat bezeichnet man vitaminreiche Blätter die man isst. Es gibt aber keinen Fußsalat.",
         solution: "d"
     },
+    {
+        question: "Wie viel Kilogramm essen Deutsche Bürger durchschnittlich im Jahr an frischem und unverarbeitetem Gemüse?",
+        a: "ca. 10 Kilogramm",
+        b: "ca. 70 Kilogramm",
+        c: "ca. 95 Kilogramm",
+        d: "ca. 200 Kilogramm",
+        answer: "Jeder Deutsche isst durchschnittlich 95 Kilogramm an Gemüse pro Jahr.",
+        solution: "c"
+    },
+    {
+        question: "Welche ist keine Obst gruppe?",
+        a: "Trockenobst",
+        b: "Steinobst",
+        c: "Strauchobst",
+        d: "Kernobst",
+        answer: "Trockenobst ist Obst, dessen Wasseranteil auf 20% reduziert wurde.",
+        solution: "a"
+    },
+    {
+        question: "Welches Obst ist am kalorienärmsten mit nur 32 Kalorien?",
+        a: "Heidelbeere",
+        b: "Kiwi",
+        c: "Himbeere",
+        d: "Erdbeere",
+        answer: "Die Erdbeere ist wegen ihrem hohen Wassergehalt von ca. 90% die kalorienärmste der Obstsorten.",
+        solution: "d"
+    },
 ]
 
 export default mquizes
