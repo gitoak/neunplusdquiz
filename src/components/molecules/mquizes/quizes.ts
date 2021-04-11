@@ -102,7 +102,7 @@ const mquizes: IMQuiz[] = [
     },
     {
         question: "Was ist nicht in Paprika enthalten?",
-        a: "Vitamin B12",
+        a: "Folsäure",
         b: "Eisen",
         c: "Kalium",
         d: "Vitamin C",
