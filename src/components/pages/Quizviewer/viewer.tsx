@@ -138,7 +138,7 @@ const Viewer: React.FC<IPage> = () => {
             </div>
         )
     } else if (quizType === 'd') {
-        return <h1>hallo</h1>
+        return <h1></h1>
     } else {
         return (
             <Container type='styled'>
